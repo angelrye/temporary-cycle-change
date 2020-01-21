@@ -158,4 +158,35 @@
 		</plugins>
 	</build>
 
+	<profiles>
+		<!-- cross environment build profiles -->
+		<profile>
+			<id>tcc-loc</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>loc</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>tcc-dev</id>
+			<properties>
+				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>tcc-qa</id>
+			<properties>
+				<spring.profiles.active>qa</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>tcc-prd</id>
+			<properties>
+				<spring.profiles.active>prd</spring.profiles.active>
+			</properties>
+		</profile>
+	</profiles>
+
 </project>
