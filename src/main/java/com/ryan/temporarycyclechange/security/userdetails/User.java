@@ -20,7 +20,7 @@ import lombok.NonNull;
 @Data
 public class User implements Authentication, Serializable {
 
-    private static final String EMAIL_DOMAIN = "@safeway.com";
+    private static final String EMAIL_DOMAIN = "@gmail.com";
 
     /**
      *

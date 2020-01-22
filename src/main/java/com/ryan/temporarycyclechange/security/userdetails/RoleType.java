@@ -13,8 +13,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
  */
 public enum RoleType {
 
-    USER_ANONYMOUS("Anonymous user.", "ROLE_ANONYMOUS"), USER_RIM("ps01.user.rim", "ROLE_RIM"),
-    USER_ADMIN("ps01.user.admin", "ROLE_ADMIN");
+    USER_ANONYMOUS("Anonymous user.", "ROLE_ANONYMOUS"), USER_RIM("tcc.user.reg", "ROLE_REG"),
+    USER_ADMIN("tcc.user.admin", "ROLE_ADMIN");
 
     private String memberOf;
     private String role;
