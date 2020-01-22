@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+    layout:decorate="~{fragments/layout}" th:with="currentPage='home'">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
+
+    <!-- <link rel="stylesheet" href="css/fontawesome.min.css"> -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/8bacda5fef.js" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="css/style.default.css">
+    <title>Host POS - Cycle Change Request Automation</title>
+</head>
+
+<body>
+    <input id="userName" type="hidden" th:value="${user.username}">
+    <input id="userDivision" type="hidden" th:value="${user.division}">
+    <input id="userGroup" type="hidden" th:value="${user.groups}">
+    <input id="isAdmin" type="hidden" th:value="${user.admin}">
+    <input id="fullname" type="hidden" th:value="${user.fullname}">
+    <header th:insert="fragments/header.html :: header"> </header>
+    <main class="mt-2 container-fluid">
+        <div id="alertContainer"></div>
+        <div class="container-fluid mx-auto">
+            <div class="jumbotron container-fluid">
+                <form class="form-inline justify-content-center container-fluid">
+                    <div class="row container">
+                        <div class="col-lg-3">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                                <input type="date" class="form-control" id="inputStartDate">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <span class="fa fa-calendar"></span>
+                                    </span>
+                                </div>
+                                <input type="date" class="form-control" id="inputEndDate">
+                            </div>
+                        </div>
+                        <div class="col-lg-1 justify-content-center ">
+                            <!-- <div class="input-group"> -->
+                            <button id="generateBtn" type="button" class="btn btn-primary">Generate</button>
+                            <!-- </div> -->
+                        </div>
+                        <div class="col-lg-5 justify-content-center ">
+                            <!-- <div class="input-group"> -->
+                            <button id="emailBtn" type="button" class="btn btn-primary">Email Approved
+                                Schedules</button>
+                            <input id="chkSendSelf" type="checkbox"> Send to Self ONLY?</input>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- close tag of Jumbotron -->
+            <!-- <div id="mainContent" hidden> -->
+            <div id="mainContent">
+                <div id="navTabContent" class="tab-content card card-body">
+                    <!-- <div class="tab-pane fade show active" id="tab-div10">
+                        <div id="baseScheduleSection-div10" class="container">
+                            <a class="btn btn-dark btn-block text-left" data-toggle="collapse" href="#collapseBaseSchedule-div10" role="button" aria-expanded="false" aria-controls="collapseBaseSchedule-div10">
+                                <i id="faddBaseSchedule-div10" class="fa fa-angle-double-down"></i> Base Schedule
+                            </a>
+                            <div class="collapse" id="collapseBaseSchedule-div10">
+                                <div class="card card-body">
+                                    <table class="table table-striped table-hover table-sm baseScheduleTable">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Offsite Batch Day</th>
+                                                <th>Run Day</th>
+                                                <th>Run Date</th>
+                                                <th>Effective Day</th>
+                                                <th>Effective Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Offsite</td>
+                                                <td>Sunday</td>
+                                                <td>07/07/2019</td>
+                                                <td>Tuesday</td>
+                                                <td>07/09/2019</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Offsite</td>
+                                                <td>Sunday</td>
+                                                <td>07/07/2019</td>
+                                                <td>Tuesday</td>
+                                                <td>07/09/2019</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Offsite</td>
+                                                <td>Sunday</td>
+                                                <td>07/07/2019</td>
+                                                <td>Tuesday</td>
+                                                <td>07/09/2019</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="container-fluid">
+                            <h2 class="btn btn-primary btn-block active text-left" aria-expanded="false" aria-controls="collapseCycleChangeSchedule-div19">
+                                Cycle Change Schedule
+                            </h2>
+                            <div class="collapse show" id="collapseCycleChangeSchedule-div10">
+                                <div class="card card-body">
+                                    <table id="tblCCSched-div10" class="table table-striped table-hover table-sm cycleChangeTable">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th class="offsiteColumn">Offsite Batch Day</th>
+                                                <th>Run Day</th>
+                                                <th class="dateColumn">Run Date</th>
+                                                <th>Effective Day</th>
+                                                <th>Effective Date</th>
+                                                <th class="requestColumn">Cycle Chg Request</th>
+                                                <th class="commentColumn">Comment</th>
+                                                <th>Status</th>
+                                                <th><input id="selectAllChkBox-div10" class="parentCheckBox" type="checkbox"></th>
+                                                <th class="editIconColumn"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input class="cycleChangeId" type="hidden" value="1">
+                                                    <span class="hideUponEdit">Offsite</span>
+                                                    <input class="offsiteCheckbox showUponEdit" type="checkbox">
+                                                </td>
+                                                <td>
+                                                    <span>Sunday</span>
+                                                </td>
+                                                <td>
+                                                    <span class="hideUponEdit">07/07/2019</span>
+                                                    <input type="date" class="form-control datetimepicker showUponEdit runDate">
+                                                </td>
+                                                <td>
+                                                    <span>Tuesday</span>
+                                                </td>
+                                                <td>
+                                                    <span class="hideUponEdit">07/09/2019</span>
+                                                    <input type="date" class="form-control datetimepicker showUponEdit">
+                                                </td>
+                                                <td>
+                                                    <span class="hideUponEdit">Modify + Offsite</span>
+                                                    <button type="button" class="btn btn-primary showUponEdit"><i
+                                                            class="fa fa-check"></i></button>
+                                                    <button type="button" class="btn btn-danger showUponEdit"><i
+                                                            class="fa fa-times"></i></button>
+                                                </td>
+                                                <td>
+                                                    <span class="hideUponEdit commentTxt"></span>
+                                                    <input type="text" class="showUponEdit commentTxt">
+                                                </td>
+                                                <td>
+                                                    <span></span>
+                                                </td>
+                                                <td><input type="checkbox"></td>
+                                                <td class="editIcon"><i class="fa fa-edit"></i></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="addRunModal" tabindex="-1" role="dialog" aria-labelledby="addRunModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addRunModalLabel">New run schedule</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text newRunSchedGroup">
+                                            <span>Run Date</span>
+                                            <!-- <span class="fa fa-calendar"></span> -->
+                                        </span>
+                                    </div>
+                                    <input type="date" class="form-control" id="newRunDate">
+                                </div>
+                                <br>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text newRunSchedGroup">
+                                            <span>Effective Date </span>
+                                            <!-- <span class="fa fa-calendar"></span> -->
+                                        </span>
+                                    </div>
+                                    <input type="date" class="form-control" id="newEffDate">
+                                </div>
+                                <br>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text newRunSchedGroup">
+                                            <span>Offsite </span>
+                                        </span>
+                                    </div>
+                                    <input id="newOffsite" type="checkbox"
+                                        class="newOffsiteCheckbox form-control align-left"></input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="closeModal" type="button" class="btn btn-secondary"
+                                data-dismiss="modal">Close</button>
+                            <button id="addNewSchedule" type="button" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--End of <div class="container-fluid mx-auto"> -->
+        <footer class="fixed-bottom">
+            <div class="container-fluid mt-3 mb-5 mx-auto text-right">
+                <button id="addRunBtn" type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target="#addRunModal">Add Run</button>
+                <button id="cancelRunBtn" type="button" class="btn btn-danger">Cancel Run</button>
+                <button id="cancelRequestBtn" type="button" class="btn btn-danger">Cancel Request</button>
+                <button id="validateBtn" type="button" class="btn btn-primary">Validate Entries</button>
+                <button id="requestApprovalBtn" type="button" class="btn btn-primary rim">Request for Approval</button>
+                <button id="rejectRunBtn" type="button" class="btn btn-danger admin" hidden>Reject Request/Run</button>
+                <button id="approveRunBtn" type="button" class="btn btn-primary admin" hidden>Approve
+                    Run/Request</button>
+            </div>
+        </footer>
+    </main>
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="js/initialize.min.js"></script>
+    <script type="module" src="js/rest-api.min.js"></script>
+    <script type="text/javascript" src="js/page.min.js"></script>
+    <script type="module" src="js/home.min.js"></script> -->
+    <script type="text/javascript" src="js/initialize.js"></script>
+    <script type="module" src="js/rest-api.js"></script>
+    <script type="text/javascript" src="js/page.js"></script>
+    <script type="module" src="js/home.js"></script>
+</body>
+
+</html>

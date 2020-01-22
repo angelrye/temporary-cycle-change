@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" th:href="@{~/css/style.default.css}" />
+</head>
+
+<body marginwidth="0" marginheight="0">
+    <div class="container">
+        <div class="row">
+            <h1>Thymeleaf Error Page</h1>
+        </div>
+        <div class="row">It apperrs Either something went wrong or the page
+            doesn't exist anymore.....</div>
+        <div class="row rowDesign">
+            <div class="col-md-4 ml-auto">
+                <span class="legend">Date</span>
+            </div>
+            <div class="col-md-8">
+                <span th:text="${timestamp}"></span>
+            </div>
+        </div>
+        <div class="row rowDesign">
+            <div class="col-md-4 ml-auto">
+                <span class="legend">Path</span>
+            </div>
+            <div class="col-md-8">
+                <span th:text="${path}"></span>
+            </div>
+        </div>
+        <div class="row rowDesign">
+            <div class="col-md-4 ml-auto">
+                <span class="legend">Error</span>
+            </div>
+            <div class="col-md-8">
+                <span th:text="${error}"></span>
+            </div>
+        </div>
+        <div class="row rowDesign">
+            <div class="col-md-4 ml-auto">
+                <span class="legend">Status</span>
+            </div>
+            <div class="col-md-8">
+                <span th:text="${status}"></span>
+            </div>
+        </div>
+        <div class="row rowDesign">
+            <div class="col-md-4 ml-auto">
+                <span class="legend">Message</span>
+            </div>
+            <div class="col-md-8">
+                <span th:text="${message}"></span>
+            </div>
+        </div>
+        <div class="row rowDesign">
+            <div class="col-md-4 ml-auto">
+                <span class="legend">Exception</span>
+            </div>
+            <div class="col-md-8">
+                <span th:text="${exception}"></span>
+            </div>
+        </div>
+        <div class="row rowDesign">
+            <div class="col-md-4 ml-auto">
+                <span class="legend">Trace</span>
+            </div>
+            <div class="col-md-8">
+                <span th:text="${trace}"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

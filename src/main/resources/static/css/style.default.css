@@ -1,0 +1,60 @@
+body {
+    padding-bottom: 70px;
+}
+
+.jumbotron {
+    padding: 20px;
+}
+
+.datetimepicker {
+    width: 175px;
+}
+
+.dateColumn {
+    width: 200px;
+}
+
+.commentColumn,
+.requestColumn {
+    width: 200px;
+}
+
+.editIconColumn {
+    width: 50px;
+}
+
+.offsiteColumn {
+    width: 155px;
+}
+
+#alertContainer {
+    position: fixed;
+    z-index: 9999;
+    left: 2%;
+    width: 96%;
+}
+
+.newRunSchedGroup {
+    width: 130px;
+}
+
+footer {
+    height: 70px;
+    background: white;
+}
+
+tr.strikeout td:before {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    border-bottom: 1px solid #111;
+    width: 100%;
+}
+
+tr.strikeout td:after {
+    content: "\00B7";
+    font-size: 1px;
+}
+
+td { position: relative; }

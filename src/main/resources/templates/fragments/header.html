@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title> -->
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-light navbar-light" th:fragment="header">
+        <div class="row container-fluid">
+            <div class="col-lg-3">
+                <a class="navbar-brand" href="/" th:href="@{/}">
+                    <img src="images/logo.png" alt="Logo">
+                </a>
+            </div>
+            <div class="col-lg-6 mt-3 text-center">
+                <h3 class="font-weight-bold text-muted">Host POS Temporary Cycle Change Request</h3>
+            </div>
+            <div class="col-lg-3">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item" th:classappend="${currentPage == 'home'} ? 'active'">
+                            <a class="nav-link" href="/" th:href="@{/}">
+                                <i class="fa fa-home" aria-hidden="true"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item" th:classappend="${currentPage == 'history'} ? 'active'">
+                            <a class="nav-link" href="/history" th:href="@{/history}">
+                                <i class="fa fa-history" aria-hidden="true"></i> History
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout" th:href="@{/logout}">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</body>
+
+</html>
